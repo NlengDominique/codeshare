@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="h-full bg-gray-900">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="h-full">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Ajouter un employe</h2>
+    </div>
+    <div th:if="${successMessage}" class="m-3">
+    <span th:text="${successMessage}" class="text-sm bg-green-700"></span>
+    </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form  th:action="@{/employees/add}" th:object="${employee}" method="POST" class="space-y-6">
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+            <div>
+                <label for="name" class="block text-sm/6 font-medium text-gray-100">Nom</label>
+                <div class="mt-2">
+                    <input th:field="*{name}"  id="name" type="text" name="name"  autocomplete="name" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+                </div>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-sm bg-red-500 p-2 text-center text-white"></span>
+            </div>
+            <div>
+                <label for="email" class="block text-sm/6 font-medium text-gray-100">Email</label>
+                <div class="mt-2">
+                    <input th:field="*{email}" id="email" type="email" name="email"  autocomplete="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+                </div>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-sm bg-red-500 p-2 text-center text-white"></span>
+            </div>
+            <div>
+                <label for="salary" class="block text-sm/6 font-medium text-gray-100">Salaire</label>
+                <div class="mt-2">
+                    <input th:field="*{salary}" id="salary" type="number" name="salary"  autocomplete="salary" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+                </div>
+                <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" class="text-sm bg-red-500 p-2 text-center text-white"></span>
+            </div>
+
+            <div>
+                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

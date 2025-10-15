@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: codeshut
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_db
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.NonRegisteringDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  devtools:
+    restart:
+      exclude: static/**,public/**
+server:
+  port: 8081
+  error:
+    whitelabel:
+      enabled: false
+logging:
+  file:
+    name: logs/app.log
+  level:
+    root: info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,beans,env
+json:
+  placeholder:
+    url: https://jsonplaceholder.typicode.com
