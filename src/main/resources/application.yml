@@ -16,6 +16,10 @@ spring:
   devtools:
     restart:
       exclude: static/**,public/**
+  security:
+    user:
+      name: user
+      password: user
 server:
   port: 8081
   error:

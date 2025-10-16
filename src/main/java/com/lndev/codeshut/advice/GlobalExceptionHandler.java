@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,7 +30,7 @@ public class GlobalExceptionHandler {
                .build();
        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
     }
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler({RuntimeException.class, BadCredentialsException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ApiError> handleRuntimeException(RuntimeException ex) {
         ApiError apiError = ApiError.builder()
